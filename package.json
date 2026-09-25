@@ -1,0 +1,17 @@
+{
+  "name": "playwright_typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.3.0"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.0",
+    "xlsx": "^0.18.5"
+  }
+}

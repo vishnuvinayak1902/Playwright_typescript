@@ -1,0 +1,47 @@
+import { test, expect } from '@playwright/test';
+import { getcodegenuser } from '../utils/codegenexcelreader';
+
+const userdata = getcodegenuser('Sheet1')[0];
+
+test('test', async ({ page }) => {
+  await page.goto(process.env.codegen_login_URL!);
+  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').click();
+  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').fill(userdata.loginEmail);
+  await page.getByRole('textbox', { name: 'Password' }).click();
+  await page.getByRole('textbox', { name: 'Password' }).fill(userdata.loginPassword);
+  await page.getByRole('button', { name: 'Login' }).click();
+  await page.goto(process.env.codegen_home_URL!);
+  await page.getByRole('link', { name: ' Logout' }).click();
+  await page.getByRole('textbox', { name: 'Name' }).click();
+  await page.getByRole('textbox', { name: 'Name' }).fill(userdata.name);
+  await page.locator('form').filter({ hasText: 'Signup' }).getByPlaceholder('Email Address').click();
+  await page.locator('form').filter({ hasText: 'Signup' }).getByPlaceholder('Email Address').fill(userdata.signupEmail);
+  await page.getByRole('button', { name: 'Signup' }).click();
+  await page.getByRole('button', { name: 'Signup' }).click();
+  await page.getByRole('radio', { name: userdata.gender }).check();
+  await page.getByRole('textbox', { name: 'Password *' }).click();
+  await page.getByRole('textbox', { name: 'Password *' }).fill(userdata.password);
+  await page.locator('#days').selectOption(userdata.day);
+  await page.locator('#months').selectOption(userdata.month);
+  await page.locator('#years').selectOption(userdata.year);
+  await page.getByRole('textbox', { name: 'First name *' }).click();
+  await page.getByRole('textbox', { name: 'First name *' }).fill(userdata.firstName);
+  await page.getByRole('textbox', { name: 'Last name *' }).click();
+  await page.getByRole('textbox', { name: 'Last name *' }).fill(userdata.lastName);
+  await page.getByRole('textbox', { name: 'Company', exact: true }).click();
+  await page.getByRole('textbox', { name: 'Address * (Street address, P.' }).click();
+  await page.getByRole('textbox', { name: 'Address * (Street address, P.' }).fill(userdata.address);
+  await page.getByRole('textbox', { name: 'State *' }).click();
+  await page.getByRole('textbox', { name: 'State *' }).fill(userdata.state);
+  await page.getByRole('textbox', { name: 'City * Zipcode *' }).click();
+  await page.getByRole('textbox', { name: 'City * Zipcode *' }).fill(userdata.city);
+  await page.locator('#zipcode').click();
+  await page.locator('#zipcode').fill(userdata.zipcode);
+  await page.getByRole('textbox', { name: 'Mobile Number *' }).click();
+  await page.getByRole('textbox', { name: 'Mobile Number *' }).fill(userdata.mobile);
+  await page.getByRole('button', { name: 'Create Account' }).click();
+  await page.goto(process.env.codegen_account_created_URL!);
+  await page.getByText('Account Created!').click();
+  await page.goto(process.env.codegen_account_created_URL!);
+  await page.getByRole('link', { name: 'Continue' }).click();
+});

@@ -1,0 +1,13 @@
+{
+  "credentials": {
+    "username": "Admin",
+    "password": "admin123"
+  },
+  "personalDetails": {
+    "firstName": "vishnu",
+    "middleName": "vinayak",
+    "lastName": "m",
+    "otherId": "111",
+    "driversLicense": "12233"
+  }
+}
