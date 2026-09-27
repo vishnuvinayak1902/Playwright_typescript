@@ -22,5 +22,5 @@ export interface CodegenUser {
 export function getcodegenuser(sheetname: string): CodegenUser[] {
   const workbook = xlsx.readFile('data/codegenautomation.xlsx')
   const worksheet = workbook.Sheets[sheetname];
-  return xlsx.utils.sheet_to_json<CodegenUser>(worksheet);
+  return xlsx.utils.sheet_to_json<CodegenUser>(worksheet, { raw: false, defval: '' });
 }

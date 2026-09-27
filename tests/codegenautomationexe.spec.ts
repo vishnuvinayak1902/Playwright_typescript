@@ -17,7 +17,6 @@ test('test', async ({ page }) => {
   await page.locator('form').filter({ hasText: 'Signup' }).getByPlaceholder('Email Address').click();
   await page.locator('form').filter({ hasText: 'Signup' }).getByPlaceholder('Email Address').fill(userdata.signupEmail);
   await page.getByRole('button', { name: 'Signup' }).click();
-  await page.getByRole('button', { name: 'Signup' }).click();
   await page.getByRole('radio', { name: userdata.gender }).check();
   await page.getByRole('textbox', { name: 'Password *' }).click();
   await page.getByRole('textbox', { name: 'Password *' }).fill(userdata.password);
@@ -41,7 +40,8 @@ test('test', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Mobile Number *' }).fill(userdata.mobile);
   await page.getByRole('button', { name: 'Create Account' }).click();
   await page.goto(process.env.codegen_account_created_URL!);
+  await page.reload();
   await page.getByText('Account Created!').click();
-  await page.goto(process.env.codegen_account_created_URL!);
   await page.getByRole('link', { name: 'Continue' }).click();
+  await page.screenshot({ path: 'screenshots/account-created.png', fullPage: true });
 });
