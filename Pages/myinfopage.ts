@@ -74,7 +74,7 @@ export class MyInfoPage {
 
   async savePersonalDetails(): Promise<void> {
     await this.saveButton.click();
-    // Wait for the save to actually persist before asserting anything.
+    // Wait for the save actually persist before asserting anything.
     await expect(this.successToast).toBeVisible({ timeout: 10_000 });
     await expect(this.successToast).toBeHidden(); // form re-rendered with saved data
   }
