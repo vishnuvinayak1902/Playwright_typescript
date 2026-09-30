@@ -53,7 +53,7 @@ export class MyInfoPage {
     await expect(this.page).toHaveURL(/viewPersonalDetails/);
   }
 
-  // OrangeHRM's Vue inputs ignore the synthetic value change made by fill()
+  // OrangeHRM's Vue inputs the synthetic value change made by fill()
   // (the PUT payload still carries the old values), so type like a user.
   private async typeInto(
     locator: import('@playwright/test').Locator,
