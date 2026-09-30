@@ -1,7 +1,7 @@
 import{test} from'@playwright/test';
 import { assessment1 } from '../Pages/automationexercise.page';
 import { gettestdata } from '../utils/automationexcelreader';
-let exceldata= gettestdata('newloginsetup')[0];
+//let exceldata= gettestdata('newloginsetup')[0];
 
 test('automationexe',async({page})=>{
 
