@@ -1,5 +1,5 @@
 import { expect, Expect,Page } from "@playwright/test";
-import { gettestdata } from '../utils/Orangeexcelreader';
+import { gettestdata } from '../utils/OrangeExcelReader';
 //import strict from "node:assert/strict";
 let ExcelData1= gettestdata('My Info')[0];
 
