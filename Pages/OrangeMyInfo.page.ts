@@ -27,8 +27,8 @@ export class OrangeMyInfoPage {
     this.lastNameInput = page.getByRole('textbox', { name: 'Last Name' });
     this.employeeIdInput = page.getByRole('textbox').nth(4);
     this.otherIdInput = page.getByRole('textbox').nth(5);
-    this.driversLicenseInput = page.locator('div:nth-child(2) > div > .oxd-input-group > div:nth-child(2) > .oxd-input');
-    this.licenseExpiryInput = page.getByRole('textbox', { name: 'yyyy-dd-mm' }).first();
+    this.driversLicenseInput = page.locator('.oxd-input-group').filter({ hasText: "Driver's License Number" }).getByRole('textbox');
+    this.licenseExpiryInput = page.locator('.oxd-input-group').filter({ hasText: 'License Expiry Date' }).getByRole('textbox');
     this.nationalitySelect = page.locator('.oxd-input-group').filter({ hasText: 'Nationality' }).locator('.oxd-select-text');
     this.maritalStatusSelect = page.locator('.oxd-input-group').filter({ hasText: 'Marital Status' }).locator('.oxd-select-text');
     this.nationalityOption = (name: string) => page.locator('.oxd-select-dropdown').getByRole('option', { name });
@@ -57,7 +57,7 @@ export class OrangeMyInfoPage {
     await this.driversLicenseInput.click();
     await this.driversLicenseInput.fill(data.DriversLicenseNumber);
     await this.licenseExpiryInput.click();
-    await this.licenseExpiryInput.fill(toDisplayDate(data.Licenseexpirydate));
+    await this.licenseExpiryInput.fill(data.Licenseexpirydate);
     // close the calendar popup that opens after filling the date,
     // otherwise it overlays the dropdowns and intercepts clicks
     await this.driversLicenseInput.click(); // move focus away so calendar closes
@@ -110,7 +110,7 @@ export class OrangeMyInfoPage {
       [this.employeeIdInput, data.EmployeeID, 'Employee ID'],
       [this.otherIdInput, data.OtherId, 'Other ID'],
       [this.driversLicenseInput, data.DriversLicenseNumber, "Driver's License Number"],
-      [this.licenseExpiryInput, toDisplayDate(data.Licenseexpirydate), 'License Expiry Date'],
+      [this.licenseExpiryInput, data.Licenseexpirydate, 'License Expiry Date'],
     ];
 
     for (const [locator, excelValue, fieldName] of checks) {
