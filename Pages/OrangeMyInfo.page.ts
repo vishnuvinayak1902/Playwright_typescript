@@ -1,5 +1,5 @@
 import { Page, Locator, expect } from '@playwright/test';
-import { ExcelData1 } from '../utils/OrangeExcelReader';
+import type { ExcelData1 } from '../utils/OrangeExcelReader';
 
 export class OrangeMyInfoPage {
   readonly page: Page;
@@ -120,16 +120,4 @@ export class OrangeMyInfoPage {
     // verify Nationality and Marital Status shown in the select widgets
     await expect(this.page.locator('.oxd-select-text').first()).toContainText(data.Nationality);
   }
-}
-
-
-/**
- * OrangeHRM date input uses yyyy-dd-mm (day-month) order.
- * Excel stores the date as yyyy-mm-dd, so convert before filling/verifying.
- */
-function toDisplayDate(value: string): string {
-  const m = value.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-  if (!m) return value;
-  const [, y, mm, dd] = m;
-  return `${y}-${dd}-${mm}`;
 }
